@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<!--
+Solid State by HTML5 UP
+html5up.net | @n33co
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>AutoBots</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  </head>
+  <body>
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="index.html">Solid State</a></h1>
+        <nav>
+          <a href="#menu">Menu</a>
+        </nav>
+      </header>
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menu</h2>
+          <ul class="links">
+            <li><a href="/comments">Create Comments</a></li>
+            <li><a href="/getPage:0">Campaign pages</a></li>
+            <li><a href="/postlog">Activity Log</a></li>
+            <li><a href="/campaign">Create Campaign</a></li>
+            <li><a href="/appsignup">App Sign Up</a></li>
+            <li><a href="/rssfeed">Rss Feeds</a></li>
+          </ul>
+          <a href="#" class="close">Close</a>
+        </div>
+      </nav>
+      <!-- Wrapper -->
+      <section id="wrapper">
+        <header>
+          <div class="inner">
+            <h2>AutoBots</h2>
+            <p>Your Social Media Automation Tool</p>
+          </div>
+        </header>
+      
+        <section>
+          <di<div class="row uniform">
+            <div class="6u 12u$(xsmall)">
+              <label for="demo-name">Add RSS FEEDS!</label>
+              <input type="text" id="name" name="field1" placeholder="Rss Link" />
+            <ul></ul>
+            <input class="button" type="submit" value="Submit!" />
+          </div>
+        </section>
+        <!-- Content -->
+        <div class="wrapper">
+          <div class="inner">
+            <section>
+              <div class="12u$" style="margin-left:70%; font-size: 16px !important; color: #aaaaaa;">
+                <label for="demo-category">Frequency</label>
+                <div class="radio">
+                <div class="4u 12u$(small)">
+                              <input type="radio" id="demo-priority-low" name="low-priority" checked value="low">
+                              <label for="demo-priority-low">Low Frequency</label>
+                            </div>
+                            <div class="4u 12u$(small)">
+                              <input type="radio" id="demo-priority-normal" name="normal-priority"value="normal">
+                              <label for="demo-priority-normal">Normal Frequency</label>
+                            </div>
+                            <div class="4u$ 12u$(small)">
+                              <input type="radio" id="demo-priority-high" name="high-priority" value="high">
+                              <label for="demo-priority-high">High Frequency</label>
+                            </div>
+               </div>             
+              </div>
+            </section>
+            <section>
+              <h3 class="major" id="customFields">RSS Links</h3>
+              <div class="table-wrapper">
+                <table class="alt">
+                  <thead>
+                    <tr>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="add-to-tbody">
+                    <% if (Object.keys(data).length) {%>
+                    <% Object.keys(data).forEach(function (key) { %>
+                    
+                    <tr>
+                      <td><%= data[key].rsslink %></td>
+                    </tr>
+                    
+                    <% }) %>
+                    <% } %>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      
+    </div>
+    <!-- Scripts -->
+    <script>
+        $(".radio").click(function(e){
+            //var radioValue1 = $("input[name='low-priority']:checked").val();
+            
+            //console.log(radioValue1);
+
+        });
+    $(".button").click(function(e){
+    e.preventDefault();
+    var link = $("#name").val();
+    if(link.indexOf("rss")==-1)
+    alert("not rss feed");
+    $.post("/addRss",
+    {
+    link : link
+    },
+    function(link){
+    var row = "<tr><td>"+link+"</td></tr>";
+    $("#add-to-tbody").append(row);
+    $("#name").val('');
+    });
+    });
+    </script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.scrollex.min.js"></script>
+    <script src="js/util.js"></script>
+    <!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+    <script src="js/main.js"></script>
+  </body>
+</html>

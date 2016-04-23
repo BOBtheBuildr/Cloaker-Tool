@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<!--
+Solid State by HTML5 UP
+html5up.net | @n33co
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>AutoBots</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  </head>
+  <body>
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+      <!-- Header -->
+      <!-- Menu -->
+      <!-- Wrapper -->
+      <section id="wrapper">
+        <header>
+          <div class="inner">
+            <h2>Cloak it!!</h2>
+            <p>Your personal link cloaking Tool</p>
+          </div>
+          <div class="inner" id="body">
+          </div>
+        </header>
+      
+        <section>
+          <div class="row uniform">
+            <div class="6u 12u$(xsmall)">
+              <label for="demo-name">Add Your Original Url</label>
+              <input type="text" id="name" name="field1" placeholder="Original URL" />
+            <ul></ul>
+            <br></br>
+            <input class="button" type="submit" value="Submit!" />
+          </div>
+        </section>
+        <!-- Content -->
+        <div class="wrapper">
+
+        </div>
+      </section>
+      <!-- Footer -->
+      
+    </div>
+    <!-- Scripts -->
+    <script>
+    $(".button").click(function(e){
+    e.preventDefault();
+    var link = $("#name").val();
+    $.post("/addlink",
+    {
+    link : link
+    },
+    function(link){
+    var heading= "<p>Your Cloaked Url = "+link+"</p>";  
+     $("#body").empty()
+    $("#body").append(heading);
+    $("#name").val('');
+    });
+    });
+    </script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.scrollex.min.js"></script>
+    <script src="js/util.js"></script>
+    <!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+    <script src="js/main.js"></script>
+  </body>
+</html>
